@@ -1,0 +1,66 @@
+---
+title: "Epidemiological Data Cleaning with R"
+author: "Hitomi Kariya"
+date: "2023-03-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Who This Book Is For
+
+This book is written for epidemiologists who use or are interested in using R to **clean public health data** such as epidemiological data. The best use of this book is for cleaning and transforming epidemiological data, but most of the contents of the book are applicable for non-epidemiological data such as education data or sales data.
+
+## Sample Data Used In This Book
+
+This book uses the following synthetic data set downloaded from [SyntheticMass](https://synthea.mitre.org/downloads). 
+
+* COVID-19 10K, CSV
+  + Ten thousand synthetic patients records with COVID-19 in the CSV format.
+  
+> Walonoski J, Klaus S, Granger E, Hall D, Gregorowicz A, Neyarapally G, Watson A, Eastman J. Synthea™ Novel coronavirus (COVID-19) model and synthetic data set. Intelligence-Based Medicine. 2020 Nov;1:100007. [https://doi.org/10.1016/j.ibmed.2020.100007]
+
+## General Rule of Data Transformation
+
+1. Set up your development environment
+    + Install/Load packages
+    + Set up working directories
+    + Create folder paths
+    + Create time stamps
+    + Create connections to databases/applications
+
+2. Load input files
+    + Read input files that have a specific word in the title
+    + Stop the transformation if:
+      * the input files are not updated since the last transformation time.
+      * there are any invalid values in the input files (i.e., record IDs with missing digits, non-UTF-8 values).
+
+3. Rename field/variable names
+    + Load a mapping file.
+    
+4. Subset input data
+    + Extract the data you want to clean or transform
+
+5. Transform data
+    + Recode existing fields/variables
+    + Create new fields/variables
+
+6. Merge/Join data
+
+7. Subset columns for export
+    + Load header files (templates) for export
+
+8. Export data
+
+9. Save back-up data
+    + Move input files to archive
+
+## Organzie your R scripts
+If you have more than 1,000 lines in your script, I would recommend splitting the code into multiple scripts as follows:
+
+1. Main script - This is an R script you run and sources the other script.
+
+2. Function script - This is an R script where we write only functions on.
+
